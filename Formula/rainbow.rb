@@ -2,14 +2,14 @@
 
 class Rainbow < Formula
   desc "DSL toolchain for SDUI (CLI, Language Server, and editor extension)"
-  homepage "https://gitlab.com/tcc-nshiftui/global/rainbowparser-rust"
-  url "https://gitlab.com/tcc-nshiftui/global/rainbowparser-rust.git",
-      branch: "release/0.1.0-beta.1"
-  version "0.1.0-beta.1"
+  homepage "https://github.com/NShiftUI-OSS/RainbowParser-Rust"
+  # This 1.0.0 snapshot points the CLI at the matching public demo tag.
+  url "https://github.com/NShiftUI-OSS/RainbowParser-Rust/archive/acd0454c13cfb885f1ba77d14d2243b35a27e061.tar.gz"
+  version "1.0.0"
+  sha256 "7ebdbd58e21a95fa208e453ae4a544a5f7f48060ccfec0bc466b91dfda97bda5"
   license "MIT"
 
-  head "https://gitlab.com/tcc-nshiftui/global/rainbowparser-rust.git",
-       branch: "main"
+  head "https://github.com/NShiftUI-OSS/RainbowParser-Rust.git", branch: "main"
 
   depends_on "node" => :build
   depends_on "rust" => :build
@@ -23,7 +23,7 @@ class Rainbow < Formula
     cd "editors/vscode-rainbow" do
       system "npm", "ci"
       system "npm", "run", "compile"
-      system "npx", "vsce", "package", "--skip-license"
+      system "npm", "run", "package"
       (share/"rainbow").install Dir["*.vsix"]
     end
   end
